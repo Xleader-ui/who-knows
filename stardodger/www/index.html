@@ -5,30 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<title>Star Dodger</title>
+<title>Mini Arcade</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <canvas id="game"></canvas>
+  <div id="app">
+    <header id="topbar">
+      <button id="backBtn" class="hidden">&larr;</button>
+      <h1 id="topTitle">MINI ARCADE</h1>
+      <span id="topSpacer"></span>
+    </header>
 
-  <div id="startScreen" class="overlay">
-    <h1>STAR DODGER</h1>
-    <p>Drag to steer. Dodge the rocks.<br/>Fly close for bonus points.</p>
-    <button id="startBtn">TAP TO PLAY</button>
-    <p class="best">Best: <span id="bestStart">0</span></p>
+    <div id="home" class="screen">
+      <div id="gameGrid" class="game-grid"></div>
+    </div>
+
+    <div id="gameContainer" class="screen hidden"></div>
   </div>
 
-  <div id="gameOverScreen" class="overlay hidden">
-    <h1>CRASHED</h1>
-    <p id="finalScore">Score: 0</p>
-    <p class="best">Best: <span id="bestEnd">0</span></p>
-    <button id="retryBtn">TRY AGAIN</button>
-  </div>
-
-  <div id="hud" class="hidden">
-    <span id="scoreLabel">0</span>
-  </div>
-
-  <script src="game.js"></script>
+  <script src="games/stardodger.js"></script>
+  <script src="games/tictactoe.js"></script>
+  <script src="games/connect4.js"></script>
+  <script src="games/snake.js"></script>
+  <script src="games/twenty48.js"></script>
+  <script src="games/memory.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
