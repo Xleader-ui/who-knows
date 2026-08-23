@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>Star Dodger</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="startScreen" class="overlay">
+    <h1>STAR DODGER</h1>
+    <p>Drag to steer. Dodge the rocks.<br/>Fly close for bonus points.</p>
+    <button id="startBtn">TAP TO PLAY</button>
+    <p class="best">Best: <span id="bestStart">0</span></p>
+  </div>
+
+  <div id="gameOverScreen" class="overlay hidden">
+    <h1>CRASHED</h1>
+    <p id="finalScore">Score: 0</p>
+    <p class="best">Best: <span id="bestEnd">0</span></p>
+    <button id="retryBtn">TRY AGAIN</button>
+  </div>
+
+  <div id="hud" class="hidden">
+    <span id="scoreLabel">0</span>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
