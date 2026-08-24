@@ -7,7 +7,7 @@ on:
 
 defaults:
   run:
-    working-directory: pocket-arcade
+    working-directory: pocket-arcade-3
 
 jobs:
   build:
