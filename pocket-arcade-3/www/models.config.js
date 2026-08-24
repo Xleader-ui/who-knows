@@ -28,40 +28,23 @@
 
 window.MODELS = [
   {
-    id: 'gpt4o-mini',
-    label: 'GPT-4o mini',
+    id: 'lfm-2.5-embedding-350m',
+    label: 'lfm-2.5-embedding-350m',
     apiBase: 'https://openrouter.ai/api/v1',
-    model: 'openai/gpt-4o-mini',
+    model: 'liquid/lfm-2.5-embedding-350m:free',
     keys: [
-      'sk-or-v1-REPLACE_WITH_YOUR_KEY',
+      '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',
+      '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',
     ],
   },
   {
-    id: 'claude-sonnet',
-    label: 'Claude 3.5 Sonnet',
+    id: 'nemotron-3.5-lightning',
+    label: 'nemotron-3.5-lightning',
     apiBase: 'https://openrouter.ai/api/v1',
-    model: 'anthropic/claude-3.5-sonnet',
+    model: 'nvidia/nemotron-3.5-lightning:free',
     keys: [
-      'sk-or-v1-REPLACE_WITH_YOUR_KEY',
-    ],
-  },
-  {
-    id: 'gemini-flash',
-    label: 'Gemini 2.0 Flash',
-    apiBase: 'https://openrouter.ai/api/v1',
-    model: 'google/gemini-2.0-flash-exp',
-    keys: [
-      'sk-or-v1-REPLACE_WITH_YOUR_KEY',
-    ],
-  },
-  {
-    id: 'llama-70b',
-    label: 'Llama 3.3 70B',
-    apiBase: 'https://openrouter.ai/api/v1',
-    model: 'meta-llama/llama-3.3-70b-instruct',
-    keys: [
-      'sk-or-v1-REPLACE_WITH_YOUR_KEY',
-      // add a second, third, etc. free-tier key here to rotate between them
+      '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',
+      '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',
     ],
   },
 
