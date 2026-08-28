@@ -9,10 +9,6 @@ defaults:
   run:
     working-directory: pocket-arcade-4
 
-# Force the entire runner container environment to point to the correct API endpoint globally
-env:
-  NPM_CONFIG_REGISTRY: https://npmjs.org
-
 jobs:
   build:
     runs-on: macos-14
@@ -20,25 +16,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Install pnpm first, bypassing standard npm engine bugs entirely
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Install Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'pnpm'
+          cache-dependency-path: pocket-arcade-4/package.json
 
-      # Explicit clean out of conflicting local workspace configuration footprints
-      - name: Sanitize Environment Files
-        run: rm -f .npmrc ~/.npmrc
-
-      - name: Generate Complete Lockfile
-        run: npm install --package-lock-only
-
+      # Clean, isolated installation that skips bad local config redirections
       - name: Install JS deps
-        run: npm ci
+        run: pnpm install --no-frozen-lockfile
 
-      # Sync web assets to the native runtime wrapper
+      # Sync web assets using npx or pnpm exec
       - name: Sync Capacitor web assets
-        run: npx cap sync ios
+        run: pnpm exec cap sync ios
 
+      # Build unsigned native iOS app package
       - name: Build unsigned .app for device
         run: |
           cd ios/App
