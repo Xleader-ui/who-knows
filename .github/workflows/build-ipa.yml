@@ -21,17 +21,22 @@ jobs:
         with:
           node-version: 22
 
-      # Force-clears local/project overrides and locks the runner to the valid API endpoint
+      # 1. Force the correct registry API rules
       - name: Configure and Sanitize Registry
         run: |
           npm config delete registry
-          npm config set registry https://registry.npmjs.org/
+          npm config set registry https://npmjs.org
           rm -f .npmrc ~/.npmrc
 
+      # 2. Automatically generate the complete, nested sub-dependencies list
+      - name: Generate Complete Lockfile
+        run: npm install --package-lock-only
+
+      # 3. Perform the secure clean install using the fresh complete tree
       - name: Install JS deps
         run: npm ci
 
-      # Sync web assets to the native runtime wrapper
+      # 4. Sync web assets to the native runtime wrapper
       - name: Sync Capacitor web assets
         run: npx cap sync ios
 
@@ -62,3 +67,4 @@ jobs:
         with:
           name: StarDodger-ipa
           path: StarDodger.ipa
+
