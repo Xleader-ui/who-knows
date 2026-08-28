@@ -7,7 +7,7 @@ on:
 
 defaults:
   run:
-    working-directory: pocket-arcade-4
+    working-directory: pocket-arcade-5
 
 jobs:
   build:
@@ -16,28 +16,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Install pnpm first, bypassing standard npm engine bugs entirely
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: Install Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
-          cache-dependency-path: pocket-arcade-4/package.json
 
-      # Clean, isolated installation that skips bad local config redirections
       - name: Install JS deps
-        run: pnpm install --no-frozen-lockfile
+        run: npm install
 
-      # Sync web assets using npx or pnpm exec
+      - name: Install TypeScript
+        run: npm install -D typescript
+
       - name: Sync Capacitor web assets
-        run: pnpm exec cap sync ios
+        run: npx cap sync ios
 
-      # Build unsigned native iOS app package
       - name: Build unsigned .app for device
         run: |
           cd ios/App
@@ -65,4 +57,3 @@ jobs:
         with:
           name: StarDodger-ipa
           path: StarDodger.ipa
-
