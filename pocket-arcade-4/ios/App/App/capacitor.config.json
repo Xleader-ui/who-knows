@@ -1,0 +1,8 @@
+{
+	"appId": "com.stardodger.game",
+	"appName": "Chat",
+	"webDir": "www",
+	"packageClassList": [
+		"FilesystemPlugin"
+	]
+}
