@@ -20,14 +20,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
-          cache-dependency-path: pocket-arcade-4/package-lock.json
 
-      # Clean, locked install directly tracking your package-lock.json structure
+      # Force-clears local/project overrides and locks the runner to the valid API endpoint
+      - name: Configure and Sanitize Registry
+        run: |
+          npm config delete registry
+          npm config set registry https://registry.npmjs.org/
+          rm -f .npmrc ~/.npmrc
+
       - name: Install JS deps
-        run: npm ci --registry=https://npmjs.org
+        run: npm ci
 
-      # Use npx to run tsc instead of trying to mutate package files on the runner
+      # Sync web assets to the native runtime wrapper
       - name: Sync Capacitor web assets
         run: npx cap sync ios
 
